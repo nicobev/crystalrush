@@ -1,0 +1,37 @@
+{
+  "name": "heroshooter",
+  "tree": {
+    "$className": "DataModel",
+
+    "ReplicatedStorage": {
+      "Shared":{
+        "$path": "dist/shared",
+        "$ignoreUnknownInstances": true
+      },
+      "Client":{
+        "$path": "dist/client/source",
+        "$ignoreUnknownInstances": true
+      },
+      "$ignoreUnknownInstances": true
+    },
+
+    "ServerScriptService": {
+      "$path": "dist/server/runtime",
+      "$ignoreUnknownInstances": true
+    },
+
+    "ServerStorage": {
+      "$path": "dist/server/source",
+      "$ignoreUnknownInstances": true
+    },
+    
+
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "$path": "dist/client/runtime",
+        "$ignoreUnknownInstances": true
+      },
+      "$ignoreUnknownInstances": true
+    }
+  }
+}

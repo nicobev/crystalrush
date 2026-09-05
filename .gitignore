@@ -1,0 +1,18 @@
+# Project place file
+/heroshooter.rbxlx
+
+# Roblox Studio lock files
+/*.rbxlx.lock
+/*.rbxl.lock
+
+# lock files
+/*.lock
+
+sourcemap.json
+
+# Packages
+/Packages
+/ServerPackages
+
+# Source
+/src
