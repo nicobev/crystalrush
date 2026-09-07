@@ -5,8 +5,8 @@
             "current": {
                 "name": "path",
                 "sources": {
-                    "@Packages": "Packages/",
-                    "@ServerPackages": "ServerPackages/",
+                    "@Packages": "Packages",
+                    "@ServerPackages": "ServerPackages",
                     "@Server": "src/server/source/",
                     "@Client": "src/client/source/",
                     "@Shared": "src/shared/"

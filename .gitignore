@@ -1,5 +1,5 @@
 # Project place file
-/heroshooter.rbxlx
+/*.rbxlx
 
 # Roblox Studio lock files
 /*.rbxlx.lock
@@ -16,3 +16,8 @@ sourcemap.json
 
 # Source
 /src
+
+# Bash Script
+/*.bash
+# Batch Script
+/*.bat
