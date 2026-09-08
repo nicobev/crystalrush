@@ -1,17 +1,39 @@
 local Players = game:GetService("Players")
 
 local Entity = require(game:GetService('ReplicatedStorage'):WaitForChild('Shared'):WaitForChild('ECS'):WaitForChild('Entity'))
-local PositionComponent = require(game:GetService('ReplicatedStorage'):WaitForChild('Shared'):WaitForChild('ECS'):WaitForChild('Components'):WaitForChild('Position'))
-local MovementComponent = require(game:GetService('ReplicatedStorage'):WaitForChild('Shared'):WaitForChild('ECS'):WaitForChild('Components'):WaitForChild('Movement'))
-local PlayerTag = require(game:GetService('ReplicatedStorage'):WaitForChild('Shared'):WaitForChild('ECS'):WaitForChild('Components'):WaitForChild('PlayerTag'))
 
-Players.PlayerAdded:Connect(function(player)
-    player.CharacterAdded:Connect(function(char)
+local createPosition = require(game:GetService('ReplicatedStorage'):WaitForChild('Shared'):WaitForChild('ECS'):WaitForChild('Components'):WaitForChild('Position')).Create
+local createMovement = require(game:GetService('ReplicatedStorage'):WaitForChild('Shared'):WaitForChild('ECS'):WaitForChild('Components'):WaitForChild('Movement')).Create
+local createPlayerTag = require(game:GetService('ReplicatedStorage'):WaitForChild('Shared'):WaitForChild('ECS'):WaitForChild('Components'):WaitForChild('PlayerTag')).Create
+local createAbility = require(game:GetService('ReplicatedStorage'):WaitForChild('Shared'):WaitForChild('ECS'):WaitForChild('Components'):WaitForChild('Ability')).Create
+
+local DashAbility = require(game:GetService('ReplicatedStorage'):WaitForChild('Shared'):WaitForChild('Classes'):WaitForChild('Abilities'):WaitForChild('Dash'))
+
+local onCharAdded = function(player,char)
+
         local root = char:WaitForChild("HumanoidRootPart")
 
         local e = Entity.new()
-        e:add(PositionComponent(root.Position.X, root.Position.Y, root.Position.Z))
-        e:add(MovementComponent(20))
-        e:add(PlayerTag())
+        createPosition(e, root.Position)
+        createMovement(e, 20)
+        createPlayerTag(e)
+
+        createAbility(e, {
+            Dash = DashAbility.new(player)
+        })
+
+end
+
+local onPlayerAdded = function(player)
+
+    player.CharacterAdded:Connect(function(char)
+        onCharAdded(player, char)
     end)
-end)
+end
+
+Players.PlayerAdded:Connect(onPlayerAdded)
+for _, player in pairs(Players:GetPlayers()) do
+    onPlayerAdded(player)
+end
+
+print("PlayerEntityInit running")

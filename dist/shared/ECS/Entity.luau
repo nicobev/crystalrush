@@ -9,7 +9,11 @@ function Entity.new()
 end
 
 function Entity:add(component)
-    world:addComponent(self.id, component)
+    world:add(self.id, component)
+end
+
+function Entity:set(component, value)
+    world:set(self.id, component, value)
 end
 
 return Entity
